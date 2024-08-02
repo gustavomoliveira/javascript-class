@@ -38,4 +38,9 @@ console.log(timesSudeste.sort());
 console.log(timesSudeste.sort().reverse());
 console.log(timesSudeste.slice(0, 4).sort().reverse());//acumular métodos
 
+//splice: primeiro paramêtro é o ponto e elemento que deseja excluir e o segundo parâmetro
+//é o número de elementos que serão excluídos a partir do índice do primeiro parâmetro
+//qualquer outro parâmetro que seja passado serão de elementos adicionados ao array
+
+
 
