@@ -3,7 +3,7 @@ paises.push('Brasil', 'Japão', 'Suíça', 'Marrocos', 'Chile');
 
 console.log(paises.length);
 
-paises.splice(2, 1, 'Grécia');
+paises[2] = 'Grécia';
 console.log(paises);
 
 /*

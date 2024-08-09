@@ -13,5 +13,5 @@ Utilize a contagem do computador (começa do 0) e não a contagem humana (começ
 
 console.log(paises.length);
 
-paises.splice(2, 1, "Grécia");
+paises[2] = 'Grécia';
 console.log(paises);
