@@ -36,7 +36,7 @@ while(i < 5) {
 //do while
 i = 0; //zerando a variável
 do {
-    alert(i + 1);
+    console.log(i + 1);
     i++;
 } while(i < 5);
 
@@ -49,3 +49,16 @@ for(let i = 0; i < 10; i++) {
     soma = soma + salario;
 }
 console.log(soma);
+
+//let 5 salários de um vetor e exibir o maior salário
+//sem o uso do Math.max()
+let salarios = [150, 170, 200, 100, 50, 180, 500, 510];
+let maiorSalario = 0;// inicializa a variavel que irá receber o maior valor
+
+for(let i = 0; i < salarios.length; i++) {
+    if(salarios[i] > maiorSalario) { //algoritmo padrão de verificação que atribui o maior elemento a variável inicializada em 0
+        maiorSalario = salarios[i];
+    }
+}
+console.log('O maior salário é o: ' + maiorSalario);
+
