@@ -45,7 +45,7 @@ let soma = 0;
 let salario = 0;
 
 for(let i = 0; i < 10; i++) {
-    salario = Number(prompt('Informe o salário: '));
+   /*  salario = Number(prompt('Informe o salário: ')); */
     soma = soma + salario;
 }
 console.log(soma);
@@ -54,11 +54,13 @@ console.log(soma);
 //sem o uso do Math.max()
 let salarios = [150, 170, 200, 100, 50, 180, 500, 510];
 let maiorSalario = 0;// inicializa a variavel que irá receber o maior valor
+let somaSalarios = 0;
 
 for(let i = 0; i < salarios.length; i++) {
     if(salarios[i] > maiorSalario) { //algoritmo padrão de verificação que atribui o maior elemento a variável inicializada em 0
         maiorSalario = salarios[i];
     }
+    somaSalarios += salarios[i]; //exibe a soma de todos os salários aproveitando o loop for
 }
 console.log('O maior salário é o: ' + maiorSalario);
-
+console.log('A soma de todos os salários é de: ' + somaSalarios);
