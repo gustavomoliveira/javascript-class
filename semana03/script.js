@@ -34,8 +34,18 @@ while(i < 5) {
 }
 
 //do while
-i =0; //zerando a variável
+i = 0; //zerando a variável
 do {
     alert(i + 1);
     i++;
 } while(i < 5);
+
+//recebendo 10 salários e somando os valores com loop for
+let soma = 0;
+let salario = 0;
+
+for(let i = 0; i < 10; i++) {
+    salario = Number(prompt('Informe o salário: '));
+    soma = soma + salario;
+}
+console.log(soma);
