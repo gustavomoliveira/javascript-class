@@ -64,5 +64,5 @@ in a prompt and that then creates an alert that displays the names in alphabetic
 
 let names = prompt("Type some comma-separated names: ");
 
-let arrNames = names.split(', ').sort();//, seguida de espaço para que funcione a remoçãop da vírgula e separador
+let arrNames = names.split(', ').sort();//, seguida de espaço para que funcione a remoção da vírgula e separador
 console.log(arrNames);

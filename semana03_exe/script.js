@@ -111,3 +111,85 @@ let valores = [1, 2, 2, 3, 4, 4, 5, 6, 6, 7];
 
 let valoresUnicos = [...new Set(valores)]; //Set() constructor que remove duplicatas;
 console.log(valoresUnicos);
+
+/* 
+Exercício 11: Arrays Multidimensionais
+	1.	Crie um array bidimensional chamado matriz com os seguintes valores:
+[
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9]
+]
+	2.	Acesse e exiba no console o valor que está na segunda linha e terceira coluna (valor 6).
+	3.	Use um loop para exibir todos os elementos da matriz no console.
+*/
+
+let matriz = [
+	[1, 2, 3],
+	[4, 5, 6],
+	[7, 8, 9]
+];
+
+console.log(matriz[1][2]);
+
+for(let i = 0; i < matriz.length; i++) { //como o array é bidimensional, é necessário primeiro acessar a linha e depois acessar o elemento
+	for(let j = 0; j < matriz[i].length; j++) { //isso é feito criando dois loops for e dois índices, um para cada camada.
+		console.log(matriz[i][j]);
+	}
+}
+
+/*
+Exercício 12: Juntando Arrays
+Crie dois arrays: primeiroArray com os valores [1, 2, 3] e segundoArray com os valores [4, 5, 6].
+Use o método concat para juntar os dois arrays em um único array chamado arrayUnido e exiba o resultado no console.
+*/
+
+let primeiroArray = [1, 2, 3];
+let segundoArray = [4, 5, 6];
+
+let arrayUnido = primeiroArray.concat(segundoArray);
+console.log(arrayUnido);
+
+/*
+Exercício 13: Desestruturando Arrays
+	1.	Crie um array chamado coordenadas com os valores [100, 200].
+	2.	Use a desestruturação de arrays para atribuir os valores do array às variáveis x e y.
+	3.	Exiba os valores de x e y no console.
+*/
+
+let coordenadas = [100, 200];
+
+let [x, y] = coordenadas; //desestruturação de array. uma forma mais elegante de atribuir valores a variáveis usando elementos do array
+console.log([x, y]);
+
+/*
+Exercício 14: Rest e Spread com Arrays
+	1.	Crie um array chamado itens com os valores [10, 20, 30, 40, 50].
+	2.	Use o operador spread para criar uma cópia do array chamado itensCopia.
+	3.	Use o operador rest para criar uma função que receba múltiplos argumentos e retorne a soma de todos eles.
+*/
+
+let itens = [10, 20, 30, 40, 50];
+
+let itensCopia = [...itens];
+console.log(itensCopia);
+
+function sum(...nums) { 
+	let resultado = 0;
+	for(let num of nums) {
+		resultado += num;
+	}
+	return resultado;
+}
+console.log(sum(2, 3, 4, 5, 6, 7, 8, 8, 9, 10));
+
+/* 
+Exercício 15: Transformando Arrays em Strings
+Crie um array chamado palavras com as palavras ["JavaScript", "é", "muito", "legal"].
+Use o método join para transformar esse array em uma única string com espaços entre as palavras e exiba o resultado no console.
+*/
+
+let palavras = ['JavaScript', 'é', 'muito', 'legal'];
+
+let frase = palavras.join(' '); //é necessário criar uma nova variável para usar o método join();
+console.log(frase);
