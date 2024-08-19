@@ -1,7 +1,7 @@
 //transformando sistema Java AppAlunos em JavaScript
 let opcao;
-let alunos = ['Gustavo', 'Mari'];
-let notas = [8, 9];
+let alunos = [];
+let notas = [];
 let quantidadeAlunos = 2;
 
 do {
@@ -14,10 +14,16 @@ do {
 
     switch(opcao) {
         case 1:
-            alert('1. Cadastrar nome do aluno');
+            for(let i = 0; i < quantidadeAlunos; i++) {
+                let nome = prompt('Digite o nome do aluno: ');
+                alunos.push(nome);
+            }
             break;
         case 2:
-            alert('2. Cadastrar nota do aluno');
+            for(let i = 0; i < quantidadeAlunos; i++) {
+                let nota = parseInt(prompt(`Digite a nota do ${alunos[i]}:`));
+                notas.push(nota);
+            }
             break;
         case 3:
             let resultado = 'Lista de alunos e suas notas:\n';
