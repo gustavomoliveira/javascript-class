@@ -105,15 +105,15 @@ console.log(numsPares);
 */
 
 let todosNumeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 15];
-let numsPares = 0;
-let numsImpares = 0;
+let numsPar = 0;
+let numsImpar = 0;
 
 for(let i = 0; i <= todosNumeros.length - 1; i++) {
 	if(todosNumeros[i] % 2 === 0) {
-		numsPares += todosNumeros[i];
+		numsPar += todosNumeros[i];
 	} else {
-		numsImpares += todosNumeros[i];
+		numsImpar += todosNumeros[i];
 	}
 }
-console.log(numsPares);
-console.log(numsImpares);
+console.log(numsPar);
+console.log(numsImpar);
