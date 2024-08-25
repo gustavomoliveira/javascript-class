@@ -14,7 +14,7 @@ class Aluno {
         this.mensalidade = mensalidade;
     }
     toString() {
-        return `Meu nome é ${this.nome} e tenho ${this.idade} anos.`;
+        return `Meu nome é ${this.nome} e tenho ${this.idade} anos.`; //sempre que usar alert() será impresso toString();
     }
     imprimir() {
         alert('Inclusão realizada com sucesso! \n' +
