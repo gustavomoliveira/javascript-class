@@ -19,6 +19,6 @@ function multiplicarArray(array) {
     return resultado;
 }
 
-resultado = multiplicarArray([1, 2, 3, 4, 5, 6, 7]);
-console.log(resultado);
+let oResultado = multiplicarArray([1, 2, 3, 4, 5, 6, 7]);
+console.log(oResultado);
 
