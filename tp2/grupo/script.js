@@ -13,18 +13,19 @@ Instruções:
     Cada sub-array deve conter os valores das vendas realizadas em diferentes turnos (manhã, tarde, noite) ao longo do dia.
 */
 
-/* let vendas = [
-    [2, 3, 5],
-    [4, 6, 5],
-    [3, 4, 5],
-    [6, 7, 8],
-    [4, 5, 6],
-    [3, 5, 7],
-    [6, 7, 4]]; */
+const vendas = [
+    [150, 200, 120], // Segunda-feira
+    [180, 230, 140], // Terça-feira
+    [160, 210, 130], // Quarta-feira
+    [170, 220, 150], // Quinta-feira
+    [190, 240, 160], // Sexta-feira
+    [200, 250, 170], // Sábado
+    [210, 260, 180]  // Domingo
+];
 
-let vendas =[];
+/* let vendas =[];
 
-function vendaDiaria() {
+function vendaDiaria() { //USAR ARRAY DO EXEMPLO
     for(let dia = 1; dia <= 7; dia++) {
         let diaSemana = [];
         for(let turnoDia = 1; turnoDia <= 3; turnoDia++) {
@@ -43,7 +44,7 @@ function vendaDiaria() {
     }
 }
 
-vendaDiaria();
+vendaDiaria(); */
 console.log(vendas);
 
 /* 
@@ -65,7 +66,7 @@ function calcularTotalDiario(vendas) {
         for(let j = 0; j < subArray.length; j++) {
            soma += subArray[j];
         }
-        totaisDiarios.push(soma);
+        totaisDiarios.push(soma); //EXIBIR FUNCAO INTERNAMENTE
     }
     return totaisDiarios;
 }
@@ -134,11 +135,11 @@ function filtrarVendasAcimaDe(totaisDiarios, valorMinimo) {
     
     for(let total in totaisDiarios) {
         if(totaisDiarios[total] > valorMinimo) {
-            vendasSuperiores.push(diasSemana[total]);
+            vendasSuperiores.push(diasSemana[total]); //EXIBIR DENTRO DA FUNCAO
         }
     }
     return vendasSuperiores;
 }
 
-let filtrados = filtrarVendasAcimaDe(total, 10);
+let filtrados = filtrarVendasAcimaDe(total, 500);
 console.log(`Os dias da semana em que as vendas superaram foram ${filtrados}.`);
