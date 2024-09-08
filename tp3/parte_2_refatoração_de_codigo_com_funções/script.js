@@ -33,7 +33,7 @@ Tarefa:
  */
 
 const numeros1 = [1, 2, 3, 4];
-const numeros2 = [5, 6, 7, 8];
+const numeros2 = [5, 6, 7, 8]; //CRIAR UMA CONSTANTE A MAIS PARA NAO USAR A VARIAVEL NUMEROS1
 
 //Aproveitando as funções de soma, subtração e multiplicação dos exercícios anteriores:
 function soma(a, b) {

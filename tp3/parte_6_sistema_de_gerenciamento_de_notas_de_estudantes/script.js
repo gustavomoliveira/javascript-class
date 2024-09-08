@@ -42,5 +42,5 @@ let situacao = atualizarSituacao(medias);
 console.log(situacao);
 
 function verificarRecuperacao(estudantes) {
-    estudantes.map(nome => estudantes.nome );
+    estudantes.map((nome) => estudantes.nome );
 }
