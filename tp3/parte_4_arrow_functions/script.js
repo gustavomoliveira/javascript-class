@@ -16,7 +16,7 @@ Requisito:
 
 const numeros = [2, 4, 6, 8];
 
-const quadrado = (array) => array.map((num) => num ** 2);
+const quadrado = (array) => array.map(num => num ** 2);
 
 console.log(`O quadrado dos elementos do array é ${quadrado(numeros)}`);
 

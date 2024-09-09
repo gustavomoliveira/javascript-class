@@ -47,7 +47,7 @@ Requisito:
 */
 
 function removerProduto(nome) {
-    return estoque.filter((item) => item.nome !== nome);
+    return estoque.filter(item => item.nome !== nome);
 }
 
 let estoqueFiltrado = removerProduto('Garrafa');

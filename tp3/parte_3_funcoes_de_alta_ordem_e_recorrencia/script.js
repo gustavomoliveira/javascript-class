@@ -9,7 +9,7 @@ Requisito:
 let numeros = [4, 5, 6, 7, 8, 10];
 
 function dobrarValores(array) {
-    return array.map((num) => num * 2);
+    return array.map(num => num * 2);
 }
 
 console.log(dobrarValores(numeros));
@@ -40,6 +40,6 @@ Requisito:
 
 const valores = [2, 3, 4, 5, 6];
 
-let fatorialArray = valores.map((num) => fatorial(num)); //utilizando a função fatorial do exercício anterior.
+let fatorialArray = valores.map(num => fatorial(num)); //utilizando a função fatorial do exercício anterior.
 
 console.log(`Os fatoriais dos elementos no array são: ${fatorialArray}.`);

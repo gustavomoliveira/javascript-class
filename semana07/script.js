@@ -1,3 +1,5 @@
+//MAP()
+
 //fácil - map();
 
 const valores = [1, 2, 3, 4, 5, 6];
@@ -26,7 +28,7 @@ console.log(aplicacaoDezPorcento);
 const alunos = ['Gustavo Oliveira', 'Mari Goulart', 'Barto Basset'];
 
 const iniciais = alunos.map((nome) => 
-    nome.split(' ').map((palavra) => palavra.charAt(0).toUpperCase()).join('') //divide em 2 arrays, seleciona a primeira letra, joga pra maiúscula e junta e uma palavra;
+    nome.split(' ').map(palavra => palavra.charAt(0).toUpperCase()).join('') //divide em 2 arrays, seleciona a primeira letra, joga pra maiúscula e junta e uma palavra;
 );
 console.log(iniciais);
 
@@ -92,8 +94,55 @@ const numeros = [4, 9, 16, 25];
 const raiz = numeros.map(numero => Math.sqrt(numero));
 console.log(raiz);
 
-/* Adicionar Prefixo a Nomes
+/*
+Adicionar Prefixo a Nomes
 Dado um array de nomes, use o map para adicionar o prefixo 'Sr(a).' a cada nome.
 */
 
 const nomes = ['Carlos', 'Ana', 'Pedro'];
+const nomesComPrefixo = nomes.map(nome => `Sr(a). ${nome}`);
+console.log(nomesComPrefixo);
+
+/* 
+Obter a Primeira Letra de Cada Palavra
+Dado um array de palavras, utilize o map para criar um array com a primeira letra de cada palavra.
+*/
+
+const animais = ['cachorro', 'gato', 'elefante'];
+const primeiraLetra = animais.map(nome => nome.charAt(0).toUpperCase());
+console.log(primeiraLetra);
+
+/* 
+Converter Valores Booleanos para String
+Dado um array de valores booleanos, use o map para converter esses valores para as strings
+*/
+
+const booleano = [true, false, true];
+const string = booleano.map(valor => valor ? 'Sim' : 'Não');
+console.log(string);
+
+//REDUCE()
+
+//FÁCIL
+const numerosVariados = [1, 2, 3, 4, 5];
+const somaNumeros = numerosVariados.reduce((acumulador, numero) => acumulador + numero, 0);
+console.log('O total da soma é ' + somaNumeros);
+
+//INTERMEDIÁRIO
+const itensVendidos = [
+    { nome: 'Camisa', preco: 100 },
+    { nome: 'Tenis', preco: 150 },
+    { nome: 'Bermuda', preco: 200 }
+];
+
+const itensComprados = [
+    { nome: 'Bola', preco: 50 },
+    { nome: 'Meia', preco: 100 },
+    { nome: 'Chuteira', preco: 150 }
+];
+
+const somaFinal = (vetorItens) => vetorItens.reduce((acumulador, item) => acumulador + item.preco, 0); //o vetor é passado como parâmetro para facilitar a inserção de dados e reduzir o código;
+console.log('A soma final de itens vendidos é ' + somaFinal(itensVendidos));
+console.log('A soma final de itens comprados é ' + somaFinal(itensComprados));
+
+//AVANÇADO
