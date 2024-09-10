@@ -63,8 +63,8 @@ console.log(`Valor total do estoque: R$ ${calcularValorTotal()}`);
 function relatorioEstoque() {
     for(let i = 0; i < estoque.length; i++) {
         console.log(`Produtos em estoque: ${estoque[i].nome}\n
-com estoque de ${estoque[i].quantidade} unidades\n
-valor total individual de R$${estoque[i].quantidade * estoque[i].precoUnitario}`)
+Com estoque de ${estoque[i].quantidade} unidades\n
+Valor total individual de R$${estoque[i].quantidade * estoque[i].precoUnitario}`)
     }
 }
 

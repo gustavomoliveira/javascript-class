@@ -16,31 +16,36 @@ Uso de funções de alta ordem:
     Utilize métodos como map para aplicar as funções de cálculo e atualização a todos os estudantes.
 */
 
-let estudantes = [{nome: 'João', notas: [6, 7, 5, 8, 10], situacao: ''},
-{nome: 'Marcela', notas: [8, 7, 9, 6, 4], situacao: ''},
-{nome: 'Carlos', notas: [9, 9, 7, 9, 6], situacao: ''}];
+//array estudantes com alguns objetos
+let estudantes = [
+    { nome: 'João', notas: [6, 7, 5, 8, 10], situacao: '' },
+    { nome: 'Marcela', notas: [6, 7, 0, 6, 4], situacao: '' },
+    { nome: 'Carlos', notas: [9, 9, 7, 9, 6], situacao: '' }
+];
 
 function calcularMedia(estudante) {
     return estudante.notas.reduce((total, nota) => total + (nota / estudante.notas.length), 0);
 }
 
-let medias = [];
-
-estudantes.forEach(estudantes => {
-    let media = calcularMedia(estudantes);
-    medias.push(media);
-    console.log(`A média de ${estudantes.nome} é ${media}.`);
-});
-
+let medias = estudantes.map(estudante => calcularMedia(estudante));
+console.log(medias);
 
 function atualizarSituacao(media) {
-    if(media >= 7) return 'Aprovado';
-    if(media >= 5 && media < 7) return 'Recuperação'
+    let atualizacao = estudantes.map(estudante => {
+        if(media > 7) {
+            estudante.situacao = 'Aprovado';
+        } else if(media >= 5 && media < 7) {
+            estudante.situacao = 'Recuperação';
+        } else {
+            estudante.situacao = 'Reprovado';
+        }
+        return estudante;
+    });
 }
 
-let situacao = atualizarSituacao(medias);
-console.log(situacao);
-
-function verificarRecuperacao(estudantes) {
+/* function verificarRecuperacao(estudantes) {
     estudantes.map((nome) => estudantes.nome );
-}
+} */
+
+/* medias >= 7
+medias >= 5 && medias < 7 */

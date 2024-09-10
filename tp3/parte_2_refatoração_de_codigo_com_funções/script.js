@@ -33,7 +33,7 @@ Tarefa:
  */
 
 const numeros1 = [1, 2, 3, 4];
-const numeros2 = [5, 6, 7, 8]; //CRIAR UMA CONSTANTE A MAIS PARA NAO USAR A VARIAVEL NUMEROS1
+const numeros2 = [5, 6, 7, 8]; 
 
 //Aproveitando as funções de soma, subtração e multiplicação dos exercícios anteriores:
 function soma(a, b) {
@@ -49,10 +49,12 @@ function multiplicacao(a, b) {
 }
 
 function refatora(a, b) {
-    for (let i = 0; i < numeros1.length; i++) {
-        console.log(`Soma: ${soma(a[i], b[i])} \n
-Diferença: ${subtracao(a[i], b[i])} \n
-Produto: ${multiplicacao(a[i], b[i])}`);
+    for (let i = 0; i < numeros1.length; i++) { //mantive o 'numeros1' já que ele é isométrico ao numeros2, mas poderia ter usado o forEach, por exemplo.
+        console.log(`\n
+Valores: ${numeros1[i]} e ${numeros2[i]} \n
+Soma: ${soma(numeros1[i], numeros2[i])} \n
+Diferença: ${subtracao(numeros1[i], numeros2[i])} \n
+Produto: ${multiplicacao(numeros1[i], numeros2[i])}`);
     }
 }
 
