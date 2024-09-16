@@ -29,24 +29,25 @@ adicionarTarefa('Lavar louça', false, 'alta');
 console.log(tarefas);
 
 let editarTarefa = (id, descricao, prioridade) => {
-        tarefas.map(tarefa => {
+    tarefas.forEach(tarefa => {
         if(tarefa.id === id) {
             tarefa.descricao = descricao;
             tarefa.prioridade = prioridade;
         }
     });
+    return tarefas;
 }
 
 editarTarefa(1, 'Não acordar', 'alta');
 console.log(tarefas);
 
-let tarefaRemovida = [];
 let removerTarefa = (id) => {
-    tarefaRemovida = tarefas.filter(tarefa => tarefa.id !== id);
+    let indice = tarefas.findIndex(tarefa => tarefa.id == id);
+    tarefas.splice(indice, 1);
 }
 
 removerTarefa(2);
-console.log(tarefaRemovida);
+console.log(tarefas);
 
 /* 
 Exercício 16 Grupo: Marcar tarefas como concluídas e filtrar por prioridade, relatório final de tarefas e resumo
@@ -60,7 +61,7 @@ utilizando métodos como reduce e arrow functions.
 */
 
 let marcarConcluida = (id) => {
-    tarefas.map(tarefa => {
+    tarefas.forEach(tarefa => {
         if(tarefa.id === id) {
             tarefa.concluida = true;
         }
@@ -70,13 +71,12 @@ let marcarConcluida = (id) => {
 marcarConcluida(3);
 console.log(tarefas);
 
-let tarefasFiltradas = [];
 let filtroPrioridade = (prioridade) => {
-    tarefasFiltradas = tarefas.filter(tarefa => tarefa.prioridade === prioridade);
+    tarefas = tarefas.filter(tarefa => tarefa.prioridade === prioridade);
 }
 
 filtroPrioridade('alta');
-console.log(tarefasFiltradas);
+console.log(tarefas);
 
 let gerarRelatorio = () => {
     tarefas.forEach(tarefa => {
@@ -89,7 +89,7 @@ gerarRelatorio();
 
 let resumoTarefas = () => {
     let resumo = tarefas.reduce((acumulador, tarefa) => {
-        acumulador.total++; /* cria um acumulador para o total de tarefas. cada uma da propriedade concluida é contata */
+        acumulador.total++; /* cria um acumulador para o total de tarefas. cada uma das propriedades concluidas é contada */
         if(tarefa.concluida) {
             acumulador.concluidas++ /* cria um acumulador para as concluidas com boolean true */
         } else {
