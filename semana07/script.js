@@ -146,3 +146,136 @@ console.log('A soma final de itens vendidos é ' + somaFinal(itensVendidos));
 console.log('A soma final de itens comprados é ' + somaFinal(itensComprados));
 
 //AVANÇADO
+const frases = [
+    'meu nome é gustavo',
+    'gustavo é um cara estranho',
+    'ele não é estranho, estranho é o nome',
+    'meu melhor amigo é o barto'
+];
+
+const contadorDePalavras = (vetorFrases) => /* vetor como parâmetro da arrow function */
+    vetorFrases.reduce((contador, frase) => { /* reduce aplicado ao vetor pegando cada elemento do array frases */
+        const palavras = frase.split(' '); /* split aplicado a cada elemento de frases e passado para uma const palavras */
+        palavras.forEach(palavra => { /* loop dentro do novo array de palavras geradas do array frases */
+            contador[palavra] = contador[palavra] ? contador[palavra] + 1 : 1; /* ternário que verifica se cada uma das palavras ja existe. se sim, +1 */
+        });
+        return contador;
+    }, {});
+
+console.log(contadorDePalavras(frases));
+
+/* 
+Somar valores de um array.
+Dado um array de números, utilize o reduce para calcular a soma de todos os elementos.
+*/
+
+const numerosExemplo = [1, 2, 3, 4, 5];
+
+const somaNumerosExemplo = numerosExemplo.reduce((contador, numero) => contador + numero, 0);
+console.log(somaNumerosExemplo);
+
+/* 
+Concatenar Strings.
+Dado um array de strings, use o reduce para concatenar todas as palavras em uma única string.
+*/
+
+const palavras = ['Hello', 'world', '!'];
+
+const frase = palavras.reduce((contador, palavra) => contador + ' ' + palavra);
+console.log(frase);
+
+/* 
+Calcular a Média dos Valores.
+Dado um array de números, utilize o reduce para calcular a média dos valores.
+*/
+
+const arrayDeNumeros = [10, 20, 30, 40, 50];
+/* lembrar que a => sem chaves ja presume o return, ja que a função não possui corpo */
+const mediaDeNumeros = (array) => /* passa o array como argumento */
+    array.reduce((contador, numero) => contador + numero, 0) / array.length; /* realiza a soma e, em seguida, a divisão pelo length do array */
+console.log(mediaDeNumeros(arrayDeNumeros));
+
+/* 
+Encontrar o Maior Número.
+Dado um array de números, utilize o reduce para encontrar o maior número do array.
+*/
+
+const variosNumeros = [10, 20, 5, 40];
+
+const maiorNumero = variosNumeros.reduce((contador, numero) => {
+    if(numero > contador) {
+        contador = numero;
+    }
+    return contador;
+}, 0);
+console.log(maiorNumero);
+
+/* usando Math.max() */
+const meuMaior = variosNumeros.reduce((contador, numero) => Math.max(contador, numero));
+console.log(meuMaior);
+
+/* 
+Contar Ocorrências de Valores.
+Dado um array de letras, use o reduce para contar quantas vezes cada letra aparece no array.
+*/
+
+const letras = ['a', 'b', 'a', 'c', 'b', 'a'];
+
+const ocorrenciaLetras = (array) => 
+    array.reduce((contador, letra) => {
+      contador[letra] = contador[letra] ? contador[letra] + 1 : 1;
+      return contador;
+    }, {a: 0, b: 0, c: 0});
+
+console.log(ocorrenciaLetras(letras));
+
+/* 
+Calcular o Fatorial de um Número.
+Utilize o reduce para calcular o fatorial de um número, dado um array de números consecutivos.
+*/
+
+const numerosConsecutivos = [1, 2, 3, 4, 5];
+/* inicializa o contador no 1 para calculo do fatorial */
+const fatorial = numerosConsecutivos.reduce((contador, numero) => contador * numero, 1);
+console.log(fatorial);
+
+/* 
+Somar valores de um Array de Objetos.
+Dado um array de objetos com propriedades valor, use o reduce para calcular a soma de todos os valores.
+*/
+
+const objValores = [{ valor: 10 }, { valor: 20 }, { valor: 30 }];
+
+const objSoma = objValores.reduce((contador, valor) => contador + valor.valor, 0);
+console.log(objSoma);
+
+/* 
+Achatar um Array de Arrays.
+Dado um array de arrays, utilize o reduce para achatar todos os elementos em um único array.
+*/
+
+const arrayDeArrays = [[1, 2], [3, 4], [5]];
+/* concat para combinar os arrays */
+const arraysAchatados = arrayDeArrays.reduce((contador, array) => contador.concat(array), []);
+console.log(arraysAchatados);
+
+/* 
+Produtos de um Array.
+Dado um array de números, use o reduce para calcular o produto de todos os elementos.
+*/
+const elementos = [2, 3, 4];
+
+const produto = elementos.reduce((contador, elemento) => contador * elemento, 1);
+console.log(produto);
+
+/* 
+Contar Palavras em uma Frase.
+Dado uma string, use o reduce para contar quantas palavras ela possui.
+*/
+const umaFrase = 'Olá, bem-vindo ao mundo do JavaScript';
+/* split retorn um array. uso apenas do contador */
+const contPalavras = umaFrase.split(' ').reduce(contador => contador + 1, 0);
+console.log(contPalavras);
+
+/* resolução simples sem o uso de reduce */
+console.log(umaFrase.split(' ').length);
