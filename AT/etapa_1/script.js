@@ -39,7 +39,6 @@ dentro da função de inclusão do pedido.
 */
 
 let pedidosArmazenados = [];
-console.log(pedidosArmazenados);
 
 class Solicitante {
     constructor(nome, email) {
@@ -57,32 +56,32 @@ class Produtos {
 }
 
 class Pedido {
-    constructor(solicitante) {
+    constructor() {
         this.id = Math.floor(Math.random() * 1000 + 1);
-        this.solicitante = solicitante;
+        this.solicitante = null;
         this.produtos = [];
     }
-    adicionarPedidos() {
-        pedidosArmazenados.push({id: this.id, solicitante: this.solicitante, produtos: this.produtos});
+    adicionarPedidos(nomeSolicitante, emailSolicitante) {
+        let solicitante = new Solicitante(nomeSolicitante, emailSolicitante);
+        this.solicitante = solicitante;
+        pedidosArmazenados.push(this);
     }
     adicionarProduto(produto) {
         this.produtos.push(produto);
     }
 }
 
-const clienteGustavo = new Solicitante('Gustavo', 'gustavo@email.com');
-console.log(clienteGustavo);
-
 const produto1 = new Produtos('Celular', 2000, 2);
-console.log(produto1);
 const produto2 = new Produtos('Carregador', 120, 4);
-console.log(produto2);
 
-const pedidoGustavo = new Pedido(clienteGustavo);
-console.log(pedidoGustavo);
-pedidoGustavo.adicionarProduto(produto1);
-pedidoGustavo.adicionarProduto(produto2);
-pedidoGustavo.adicionarPedidos();
+let pedido = new Pedido();
+pedido.adicionarProduto(produto1);
+pedido.adicionarProduto(produto2);
+pedido.adicionarPedidos('Gustavo', 'gustavo@email.com');
+
+console.log(pedidosArmazenados);
+
+
 
 
 
