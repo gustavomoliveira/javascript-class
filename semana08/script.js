@@ -19,18 +19,15 @@ class Cliente {
       this.produtos = [];
       this.status = "Em aberto";
     }
-  
     adicionarProdutos(produto) {
       this.produtos.push(produto);
     }
-  
-    calcularTotal(){
+    calcularTotal() {
       const novoVetor = this.produtos.map(produto => produto.preco * produto.quantidade);
       
       return novoVetor.reduce((total, valor) => total + valor, 0);
     }
-  
-    imprimir(){
+    imprimir() {
       console.log(`Total do pedido do ${this.cliente.nome}: R$${this.calcularTotal().toFixed(2)}`);
     }
   }
