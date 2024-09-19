@@ -30,50 +30,57 @@ ser passadas como parâmetros, e um novo objeto solicitante será instanciado e 
 dentro da função de inclusão do pedido.
 */
 
-let pedidosArmazenados = [];
+/* Sistema de Gestão de Oficina
 
-class Solicitante {
+Classes:
+Serviço: cliente, carros.
+Carro: marca, modelo, placa
+Cliente: nome, email.
+*/
+
+let garagemOficina = [];
+
+class Cliente {
     constructor(nome, email) {
         this.nome = nome;
         this.email = email;
     }
 }
 
-class Produtos {
-    constructor(nome, preco, quantidade) {
-        this.nome = nome;
-        this.preco = preco;
-        this.quantidade = quantidade;
+class Carro {
+    constructor(marca, modelo, placa) {
+        this.marca = marca;
+        this.modelo = modelo;
+        this.placa = placa;
     }
 }
 
-class Pedido {
+class Servico {
     constructor() {
-        this.id = Math.floor(Math.random() * 1000 + 1); //usar metodo de geração de id igual o usado no tp3 de interatividade.
-        this.solicitante = null;
-        this.produtos = [];
+        this.cliente = null;
+        this.carros = [];
     }
-    adicionarPedidos(nomeSolicitante, emailSolicitante) {
-        let solicitante = new Solicitante(nomeSolicitante, emailSolicitante);
-        this.solicitante = solicitante;
-        pedidosArmazenados.push(this); //o this é o obj que está sendo manipulado nesse momento!
+    adicionarPedidos(nomeCliente, emailCliente) {
+        let cliente = new Cliente(nomeCliente, emailCliente);
+        this.cliente = cliente;
+        garagemOficina.push(this); //o this é o obj que está sendo manipulado nesse momento!
     }
-    adicionarProduto(produto) {
-        this.produtos.push(produto);
+    adicionarProduto(carro) {
+        this.carros.push(carro);
     }
 }
 
-//criando dois produtos
-const produto1 = new Produtos('Celular', 2000, 2);
-const produto2 = new Produtos('Carregador', 120, 4);
+//criando dois carros
+const carro1 = new Carro('Mercedes Benz', 'GLC', 2456);
+const carro2 = new Carro('BMW', 'X5', 3765);
 
-//criando um pedido
-let pedido = new Pedido();
-pedido.adicionarProduto(produto1);
-pedido.adicionarProduto(produto2);
-pedido.adicionarPedidos('Gustavo', 'gustavo@email.com');
+//criando um serviço
+let servico = new Servico();
+servico.adicionarProduto(carro1);
+servico.adicionarProduto(carro2);
+servico.adicionarPedidos('Gustavo', 'gustavo@email.com');
 
-console.log(pedidosArmazenados);
+console.log(garagemOficina);
 
 /* 
 Etapa 2 Trabalhando com Repetições/Interações
@@ -87,18 +94,18 @@ Essa função deve percorrer a coleção de pedidos usando uma estrutura de repe
 de cada classe relacionada (Pedido, Solicitante e Produto).
 */
 
-function exibirPedidos(pedidos) {
+function exibirPedidos(servicos) {
     let imprime = '';
-    pedidos.forEach((pedido, i) => {
-    imprime += `Pedido: ${i} - Id: ${pedido.id} - Solicitante: ${pedido.solicitante.nome}\n`;
-        pedido.produtos.forEach((produto, j) => {
-            imprime += `Produto: ${produto.nome} - Preço: ${produto.preco}\n`
+    servicos.forEach((servico, i) => {
+    imprime += `Serviço: ${i + 1} - Cliente: ${servico.cliente.nome}\n`;
+        servico.carros.forEach((carro, j) => {
+            imprime += `Carro/Marca: ${carro.marca} - Modelo: ${carro.modelo}\n`
         });
     });
     console.log(imprime);
 }
 
-exibirPedidos(pedidosArmazenados);
+exibirPedidos(garagemOficina);
 
 
 

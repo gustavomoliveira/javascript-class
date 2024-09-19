@@ -70,12 +70,6 @@ Tarefa:
     Use essas funções para processar o array lista e exibir os resultados.
     Garanta que o código seja modular e fácil de manter. As funções devem ser
     reutilizáveis para diferentes arrays se necessário.
-
-const lista = [10, 20, 30, 40];
-console.log("Soma dos elementos:");
-console.log(lista[0] + lista[1] + lista[2] + lista[3]);
-console.log("Multiplicação dos elementos:");
-console.log(lista[0] * lista[1] * lista[2] * lista[3]);
 */
 
 const lista = [10, 20, 30, 40];
