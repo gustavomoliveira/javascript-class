@@ -49,14 +49,14 @@ class Produtos {
 
 class Pedido {
     constructor() {
-        this.id = Math.floor(Math.random() * 1000 + 1);
+        this.id = Math.floor(Math.random() * 1000 + 1); //usar metodo de geração de id igual o usado no tp3 de interatividade.
         this.solicitante = null;
         this.produtos = [];
     }
     adicionarPedidos(nomeSolicitante, emailSolicitante) {
         let solicitante = new Solicitante(nomeSolicitante, emailSolicitante);
         this.solicitante = solicitante;
-        pedidosArmazenados.push(this);
+        pedidosArmazenados.push(this); //o this é o obj que está sendo manipulado nesse momento!
     }
     adicionarProduto(produto) {
         this.produtos.push(produto);
@@ -88,11 +88,14 @@ de cada classe relacionada (Pedido, Solicitante e Produto).
 */
 
 function exibirPedidos(pedidos) {
-    pedidos.forEach(elemento => {
-         console.log(`Nome do Solicitante: ${elemento.solicitante.nome}, 
-Nomes dos Produtos: ${elemento.produtos.forEach(el => el.nome)},
-Id do Pedido: ${elemento.id}`);
-    })
+    let imprime = '';
+    pedidos.forEach((pedido, i) => {
+    imprime += `Pedido: ${i} - Id: ${pedido.id} - Solicitante: ${pedido.solicitante.nome}\n`;
+        pedido.produtos.forEach((produto, j) => {
+            imprime += `Produto: ${produto.nome} - Preço: ${produto.preco}\n`
+        });
+    });
+    console.log(imprime);
 }
 
 exibirPedidos(pedidosArmazenados);
