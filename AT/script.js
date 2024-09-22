@@ -34,7 +34,7 @@ dentro da função de inclusão do pedido.
 
 Classes:
 Serviço: cliente, carros.
-Carro: marca, modelo, placa
+Carro: marca, modelo, ano.
 Cliente: nome, email.
 */
 
@@ -48,37 +48,40 @@ class Cliente {
 }
 
 class Carro {
-    constructor(marca, modelo, placa) {
+    constructor(marca, modelo, ano) {
         this.marca = marca;
         this.modelo = modelo;
-        this.placa = placa;
+        this.ano = ano;
     }
 }
 
 class Servico {
-    constructor() {
-        this.cliente = null;
+    constructor(cliente, id, preco) {
+        this.cliente = cliente;
+        this.id = id;
+        this.preco = preco;
         this.carros = [];
     }
-    adicionarPedidos(nomeCliente, emailCliente) {
-        let cliente = new Cliente(nomeCliente, emailCliente);
-        this.cliente = cliente;
+    adicionarServico() {
         garagemOficina.push(this); //o this é o obj que está sendo manipulado nesse momento!
     }
-    adicionarProduto(carro) {
+    adicionarCarro(carro) {
         this.carros.push(carro);
     }
 }
 
-//criando dois carros
-const carro1 = new Carro('Mercedes Benz', 'GLC', 2456);
-const carro2 = new Carro('BMW', 'X5', 3765);
+//criando carros
+const carro1 = new Carro('Mercedes Benz', 'GLC', 2023);
+const carro2 = new Carro('BMW', 'X5', 2020);
 
-//criando um serviço
-let servico = new Servico();
-servico.adicionarProduto(carro1);
-servico.adicionarProduto(carro2);
-servico.adicionarPedidos('Gustavo', 'gustavo@email.com');
+//criando cliente
+const cliente1 = new Cliente('Gustavo', 'gustavo@email.com');
+
+//criando serviço
+let servico = new Servico(cliente1, 123, 5000);
+servico.adicionarCarro(carro1);
+servico.adicionarCarro(carro2);
+servico.adicionarServico();
 
 console.log(garagemOficina);
 
@@ -97,15 +100,27 @@ de cada classe relacionada (Pedido, Solicitante e Produto).
 function exibirPedidos(servicos) {
     let imprime = '';
     servicos.forEach((servico, i) => {
-    imprime += `Serviço: ${i + 1} - Cliente: ${servico.cliente.nome}\n`;
+    imprime += `Serviço ${i + 1} - ID: ${servico.id} - Cliente: ${servico.cliente.nome} - Valor R$${servico.preco}\n`;
         servico.carros.forEach((carro, j) => {
-            imprime += `Carro/Marca: ${carro.marca} - Modelo: ${carro.modelo}\n`
+            imprime += `Carro ${j + 1} - Marca: ${carro.marca} - Modelo: ${carro.modelo}\n`
         });
     });
     console.log(imprime);
 }
 
 exibirPedidos(garagemOficina);
+
+/* 
+Aninhamento de loops para entrada de dados:
+Desenvolva a entrada de dados para a inclusão de novos serviço, cliente e carro através de loops.
+O processo começa com um loop inicial para coletar as informações da classe principal (Serviço) e da
+classe associativa (Cliente). Em seguida, crie um segundo loop aninhado dentro do primeiro para
+receber os dados dos carros que serão associados ao serviço. O objetivo é permitir que o usuário
+adicione vários produtos a um pedido até que ele decida parar.
+*/
+
+
+
 
 
 
