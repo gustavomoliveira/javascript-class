@@ -116,11 +116,44 @@ Desenvolva a entrada de dados para a inclusão de novos serviço, cliente e carr
 O processo começa com um loop inicial para coletar as informações da classe principal (Serviço) e da
 classe associativa (Cliente). Em seguida, crie um segundo loop aninhado dentro do primeiro para
 receber os dados dos carros que serão associados ao serviço. O objetivo é permitir que o usuário
-adicione vários produtos a um pedido até que ele decida parar.
+adicione vários carros a um serviço até que ele decida parar.
 */
 
+function cadastroServico() {
+    let novoServico = true;
+    while(novoServico) {
+        //coleta dados do cliente
+        const nomeCliente = prompt('Insira o nome do cliente:');
+        const emailCliente = prompt('Insira o e-mail de contato do cliente:');
+        const cliente = new Cliente(nomeCliente, emailCliente);
 
+        //coleta dados do serviço
+        const idServico = parseInt(prompt('Insira o ID do serviço a ser realizado:'));
+        const precoServico = parseFloat(prompt('Insira o preço do serviço a ser realizado:'));
+        const servico = new Servico(cliente, idServico, precoServico);
 
+        let novoCarro = true;
+        while(novoCarro) {
+            //coleta dados do carro
+            const marcaCarro = prompt('Insira a marca do carro:');
+            const modeloCarro = prompt('Insira o modelo do carro:');
+            const anoCarro = parseInt(prompt('Insira o ano de fabricação do carro:'));
+            const carro = new Carro(marcaCarro, modeloCarro, anoCarro);
+
+            //adiciona carro ao serviço
+            servico.adicionarCarro(carro);
+            //pergunta ao usuário se ele deseja adicionar mais carros ao serviço
+            novoCarro = confirm('Deseja adicionar mais carros ao serviço? "Ok" para "Sim" / "Cancelar" para "não".');
+        }
+        //adiciona o serviço criado à garagem
+        servico.adicionarServico();
+        //pergunta ao usuário se ele deseja adicionar um novo serviço
+        novoServico = confirm('Deseja adicionar um novo serviço? "Ok" para "Sim" / "Cancelar" para "não".');
+    }
+    console.log(garagemOficina);
+}
+
+cadastroServico();
 
 
 
