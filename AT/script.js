@@ -13,6 +13,9 @@ class Cliente {
         this.nome = nome;
         this.email = email;
     }
+    toString() {
+        return `${this.nome.charAt(0).toUpperCase() + this.nome.slice(1)} - ${this.email}`;
+    }
 }
 
 class Carro {
@@ -20,6 +23,9 @@ class Carro {
         this.marca = marca;
         this.modelo = modelo;
         this.ano = ano;
+    }
+    toString() {
+        return `${this.marca.toUpperCase()} - ${this.modelo.toUpperCase()} - ${this.ano}`
     }
 }
 
@@ -30,13 +36,17 @@ class Servico {
         this.preco = preco;
         this.carros = [];
     }
+    toString() {
+        let todosOsCarros = this.carros.map(carro => carro.toString()).join('\n');
+        return `Serviço[${this.id}] - Cliente: ${this.cliente.toString()} - Valor total a ser pago: R$${Math.round(this.preco).toFixed(2)}\nCarros:\n${todosOsCarros}`;
+    }
     adicionarServico() {
         garagemOficina.push(this); //o this é o obj que está sendo manipulado nesse momento!
     }
     adicionarCarro(carro) {
         this.carros.push(carro);
     }
-    removerCarroModelo(modelo) {
+    removerModeloCarro(modelo) {
         this.carros = this.carros.filter(carro => carro.modelo.toLowerCase() !== modelo.toLowerCase());
     }
     modificarAtributo(atributo, valor) {
@@ -49,7 +59,7 @@ class Servico {
     }
 }
 
-/* //criando carros
+//criando carros
 const carro1 = new Carro('Mercedes Benz', 'GLC', 2023);
 const carro2 = new Carro('BMW', 'X5', 2020);
 const carro3 = new Carro('VW', 'Fusca', 1968);
@@ -66,7 +76,7 @@ let servico = new Servico(cliente1, 123, 5000);
 servico.adicionarCarro(carro2);
 servico.adicionarCarro(carro3);
 servico.adicionarServico();
-servico.removerCarroModelo('x5'); //recebe o modelo do carro para remoção.
+servico.removerModeloCarro('x5'); //recebe o modelo do carro para remoção.
 servico.modificarAtributo('id', 125);
 
 let servico2 = new Servico(cliente2, 654, 8200);
@@ -81,20 +91,17 @@ servico3.adicionarCarro(carro3);
 servico3.adicionarServico();
 
 console.log(garagemOficina);
-console.log(servico.carros); */
+console.log(servico.carros);
 
-function exibirServicos(servicos) {
+function exibirServicos() {
     let imprime = '';
-    servicos.forEach((servico, i) => {
-    imprime += `Serviço ${i + 1} - ID: ${servico.id} - Cliente: ${servico.cliente.nome} - Valor R$${servico.preco}\n`;
-        servico.carros.forEach((carro, j) => {
-            imprime += `Carro ${j + 1} - Marca: ${carro.marca} - Modelo: ${carro.modelo}\n`
-        });
+    garagemOficina.forEach(servico => {
+        imprime += servico.toString() + '\n\n';
     });
     console.log(imprime);
 }
 
-function cadastroServico() {
+/*function cadastroServico() {
     let novoServico = true;
     while(novoServico) {
         //coleta dados do cliente
@@ -128,33 +135,36 @@ function cadastroServico() {
     console.log(garagemOficina);
 }
 
-cadastroServico();
+cadastroServico(); */
 
 //exibe a garagem apenas após o cadastro.
-exibirServicos(garagemOficina);
+exibirServicos();
 
-const totalizadores = () => {
-   return garagemOficina.map(servico => ({
+const totalizadores = (garagem) => {
+    const osTotalizadores = garagem.map(servico => ({
     totalValorServico: servico.preco,
     totalCarros: servico.carros.length
    }));
+   console.log(`Valores totais de preço por serviço e número de carros: ${JSON.stringify(osTotalizadores, null, 2)}`);
 }
-console.log(totalizadores());
+totalizadores(garagemOficina);
 
 //map em todo o array da garagem, acessa os serviços, dentro dos serviços a coleção de carros que é aberta em um único array e filtrada por ano acima de 2010
-const anoFabricacao = (garagem) => {
-   return garagem.map(servico => servico.carros).flat().filter(carro => carro.ano >= 2010);
+const anoFabricacao = (garagem, ano) => {
+   const oAnoDeFabricacao = garagem.map(servico => servico.carros).flat().filter(carro => carro.ano >= ano);
+   console.log(`Carros selecionados a partir do ano de ${ano}: ${JSON.stringify(oAnoDeFabricacao, null, 2)}`);
 }
-console.log(anoFabricacao(garagemOficina));
+anoFabricacao(garagemOficina, 2010);
 
 //usando some() para verificar a ocorrência de preço
-const ocorrenciaGaragem = (garagem, preco) => {
-    return garagem.some(servico => servico.preco > preco);
+const ocorrenciaPreco = (garagem, preco) => {
+    const ocorrencia = garagem.some(servico => servico.preco > preco);
+    console.log(ocorrencia ? `Existe serviço a partir de R$${Math.round(preco).toFixed(2)}` : `Não existe serviço a partir de ${Math.round(preco).toFixed(2)}`);
 }
-console.log(ocorrenciaGaragem(garagemOficina, 5000));
+ocorrenciaPreco(garagemOficina, 5000);
 
 //etapa 4 - ex. 1, 2 e 3 - função de manipulação de string
-function relatorioDetalhado(servicos) {
+/* function relatorioDetalhado(servicos) {
    let imprime = '';
 
     servicos.forEach((servico, i) => {
@@ -168,7 +178,5 @@ Possui ${servico.carros.length} carro(s) em nossa garagem para realização de m
     console.log(imprime);
 }
 
-relatorioDetalhado(garagemOficina);
-
-
+relatorioDetalhado(garagemOficina); */
 
