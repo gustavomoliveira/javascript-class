@@ -19,29 +19,29 @@ class Cliente {
 }
 
 class Carro {
-    constructor(marca, modelo, ano) {
+    constructor(marca, modelo, ano, preco) {
         this.marca = marca;
         this.modelo = modelo;
         this.ano = ano;
+        this.preco = preco;
     }
     toString() {
-        return `${this.marca.toUpperCase()} - ${this.modelo.toUpperCase()} - ${this.ano}`
+        return `${this.marca.toUpperCase()} - ${this.modelo.toUpperCase()} - ${this.ano} - Valor do serviço: R$${Math.round(this.preco).toFixed(2)}`
     }
 }
 
 class Servico {
-    constructor(cliente, id, preco) {
+    constructor(cliente, id) {
         this.cliente = cliente;
         this.id = id;
-        this.preco = preco;
         this.carros = [];
     }
     toString() {
         let todosOsCarros = this.carros.map(carro => carro.toString()).join('\n');
-        return `Serviço[${this.id}] - Cliente: ${this.cliente.toString()} - Valor total a ser pago: R$${Math.round(this.preco).toFixed(2)}\nCarros:\n${todosOsCarros}`;
+        return `Serviço[${this.id}] - Cliente: ${this.cliente.toString()}\nCarros:\n${todosOsCarros}`;
     }
     adicionarServico() {
-        garagemOficina.push(this); //o this é o obj que está sendo manipulado nesse momento!
+        garagemOficina.push(this);
     }
     adicionarCarro(carro) {
         this.carros.push(carro);
@@ -60,11 +60,11 @@ class Servico {
 }
 
 //criando carros
-const carro1 = new Carro('Mercedes Benz', 'GLC', 2023);
-const carro2 = new Carro('BMW', 'X5', 2020);
-const carro3 = new Carro('VW', 'Fusca', 1968);
-const carro4 = new Carro('Fiat', 'Uno', 2014);
-const carro5 = new Carro('Ferrari', 'Enzo', 2016);
+const carro1 = new Carro('Mercedes Benz', 'GLC', 2023, 5200);
+const carro2 = new Carro('BMW', 'X5', 2020, 5100);
+const carro3 = new Carro('VW', 'Fusca', 1968, 2400);
+const carro4 = new Carro('Fiat', 'Uno', 2014, 1200);
+const carro5 = new Carro('Ferrari', 'Enzo', 2016, 14000);
 
 //criando cliente
 const cliente1 = new Cliente('gustavo', 'gustavo@email.com');
@@ -72,19 +72,19 @@ const cliente2 = new Cliente('bartô', 'barto@email.com');
 const cliente3 = new Cliente('joão', 'joao@email.com');
 
 //criando serviço
-let servico = new Servico(cliente1, 123, 5000);
+let servico = new Servico(cliente1, 123);
 servico.adicionarCarro(carro2);
 servico.adicionarCarro(carro3);
 servico.adicionarServico();
 servico.removerModeloCarro('x5'); //recebe o modelo do carro para remoção.
 servico.modificarAtributo('id', 125);
 
-let servico2 = new Servico(cliente2, 654, 8200);
+let servico2 = new Servico(cliente2, 654);
 servico2.adicionarCarro(carro5);
 servico2.adicionarCarro(carro1);
 servico2.adicionarServico();
 
-let servico3 = new Servico(cliente3, 342, 7250);
+let servico3 = new Servico(cliente3, 342);
 servico3.adicionarCarro(carro1);
 servico3.adicionarCarro(carro4);
 servico3.adicionarCarro(carro3);
@@ -141,10 +141,14 @@ cadastroServico(); */
 exibirServicos();
 
 const totalizadores = (garagem) => {
-    const osTotalizadores = garagem.map(servico => ({
-    totalValorServico: servico.preco,
-    totalCarros: servico.carros.length
-   }));
+    const osTotalizadores = garagem.map(servico => {
+        const valorTotalServico = servico.carros.reduce((total, carro) => total + carro.preco, 0);
+        const totalCarros = servico.carros.length;
+        return {
+            valorTotalServico: `R$${Math.round(valorTotalServico).toFixed(2)}`,
+            totalCarros: totalCarros
+        };
+    });
    console.log(`Valores totais de preço por serviço e número de carros: ${JSON.stringify(osTotalizadores, null, 2)}`);
 }
 totalizadores(garagemOficina);
@@ -158,7 +162,10 @@ anoFabricacao(garagemOficina, 2010);
 
 //usando some() para verificar a ocorrência de preço
 const ocorrenciaPreco = (garagem, preco) => {
-    const ocorrencia = garagem.some(servico => servico.preco > preco);
+    const ocorrencia = garagem.some(servico => {
+        return servico.carros.some(carro => carro.preco > preco);
+    });
+    
     console.log(ocorrencia ? `Existe serviço a partir de R$${Math.round(preco).toFixed(2)}` : `Não existe serviço a partir de ${Math.round(preco).toFixed(2)}`);
 }
 ocorrenciaPreco(garagemOficina, 5000);
