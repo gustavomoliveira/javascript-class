@@ -51,7 +51,7 @@ class Servico {
     removerModeloCarro(modelo) {
         this.carros = this.carros.filter(carro => carro.modelo.toLowerCase() !== modelo.toLowerCase());
     }
-    //Função de modificação de atributo e valor do mesmo baseado nos parâmetros passados
+    //Função de modificação de atributo e valor do mesmo baseado em parâmetros inseridos
     modificarAtributo(atributo, valor) {
         if(this.hasOwnProperty(atributo)) {
             this[atributo] = valor;
@@ -119,7 +119,7 @@ function cadastroServico() {
 
         let novoCarro = true;
         while(novoCarro) {
-            //Coleta dados do carrogustavo
+            //Coleta dados do carro
             const marcaCarro = prompt('Insira a marca do carro:');
             const modeloCarro = prompt('Insira o modelo do carro:');
             const anoCarro = parseInt(prompt('Insira o ano de fabricação do carro:'));
